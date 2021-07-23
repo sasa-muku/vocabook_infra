@@ -26,8 +26,16 @@ provider "google" {
 # -----------------------------------------------------------------------------
 # Enable APIs
 # -----------------------------------------------------------------------------
-resource "google_project_service" "text-to-speech" {
+resource "google_project_service" "text_to_speech" {
   service            = "texttospeech.googleapis.com"
   project            = var.project_id
   disable_on_destroy = true
+}
+
+# -----------------------------------------------------------------------------
+# Create Service Accounts
+# -----------------------------------------------------------------------------
+resource "google_service_account" "text_to_speech" {
+  account_id   = "text-to-speech"
+  display_name = "text-to-speech"
 }
